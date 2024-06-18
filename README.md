@@ -49,6 +49,17 @@ docker-compose up -d
 ```
 e veja a mágica acontecer.
 
+## Definindo quantidade de requisições
+Para definir a quantidade de requisições permitidas
+em um determinado intervalo de tempo, basta alterar
+as seguintes propriedades no arquivo .env:
+```bash
+      - LIMIT_REQ_IP=10
+      - LIMIT_REQ_TOKEN=100
+```
+onde ```LIMIT_REQ_IP``` é a quantidade de requisições por IP
+e ```LIMIT_REQ_TOKEN``` é a quantidade de requisições por token.
+
 ## Chamadas de teste
 Você pode testar a aplicação fazendo chamadas para o:
 ```bash
