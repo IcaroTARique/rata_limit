@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"fmt"
 	"github.com/IcaroTARique/rate_limit/configs"
 	"github.com/IcaroTARique/rate_limit/internals/redis"
 	"net/http"
@@ -17,7 +18,7 @@ func IPRateLimit(next http.Handler, conf configs.Conf) http.Handler {
 		if err != nil || !allowed {
 			http.Error(
 				w,
-				"you have reached the maximum number of requests or actions allowed within a certain time frame",
+				fmt.Errorf("you have reached the maximum number of requests or actions allowed for this IP (%s) within a certain time frame", ip).Error(),
 				http.StatusTooManyRequests)
 			return
 		}

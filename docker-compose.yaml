@@ -9,3 +9,20 @@ services:
       - REDIS_PASSWORD=redispass
       - REDIS_DATABASES=16
     command: ["redis-server", "--requirepass", "redispass", "--databases", "16"]
+
+  rate-limit:
+    container_name: rate-limit
+    build: .
+    ports:
+      - "8082:8080"
+    environment:
+      - REDIS_ADDR=redis:6379
+      - REDIS_PASSWORD=redispass
+      - REDIS_DATABASE=16
+      - LIMIT_REQ_IP=10
+      - LIMIT_REQ_TOKEN=100
+      - TLL_IP=1
+      - PORT=8080
+    restart: always
+    depends_on:
+      - redis

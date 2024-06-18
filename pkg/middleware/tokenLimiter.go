@@ -16,7 +16,7 @@ func TokenRateLimit(next http.Handler, conf configs.Conf) http.Handler {
 		if err != nil || !allowed {
 			http.Error(
 				w,
-				"you have reached the maximum number of requests or actions allowed within a certain time frame",
+				"you have reached the maximum number of requests or actions allowed for this API_KEY within a certain time frame",
 				http.StatusTooManyRequests)
 			return
 		}
