@@ -3,6 +3,7 @@ package redis
 import (
 	"github.com/stretchr/testify/suite"
 	"testing"
+	"time"
 )
 
 type IpTest struct {
@@ -44,6 +45,7 @@ func (suite *RateLimiterTestSuite) TestRateLimiter_AllowIp() {
 		suite.Fail("Error on AllowIp: ", err.Error())
 	}
 	suite.True(res)
+	time.Sleep(time.Millisecond * 1200)
 }
 
 func (suite *RateLimiterTestSuite) TestRateLimiter_AllowToken() {
@@ -52,6 +54,7 @@ func (suite *RateLimiterTestSuite) TestRateLimiter_AllowToken() {
 		suite.Fail("Error on AllowToken: ", err.Error())
 	}
 	suite.True(res)
+	time.Sleep(time.Millisecond * 1200)
 }
 
 func (suite *RateLimiterTestSuite) TestRateLimiter_AllowIpLimit() {
@@ -67,6 +70,7 @@ func (suite *RateLimiterTestSuite) TestRateLimiter_AllowIpLimit() {
 		suite.Fail("Error on AllowIp: ", err.Error())
 	}
 	suite.False(res)
+	time.Sleep(time.Millisecond * 1200)
 }
 
 func (suite *RateLimiterTestSuite) TestRateLimiter_AllowTokenLimit() {
